@@ -36,6 +36,18 @@ struct SettingsView: View {
                     // MARK: - Section 2
                     
                     // MARK: - Section 3
+                
+                GroupBox {
+                    SettingsRowView(name: "Developer", content: "Alexander Snitko")
+                    SettingsRowView(name: "Designer", content: "Alexander Snitko")
+                    SettingsRowView(name: "Compatibility", content: "iOS 14+")
+                    SettingsRowView(name: "Github", linkLabel: "AsyncAmisu GIT", linkDestination: "github.com/AsyncAmisu")
+                    SettingsRowView(name: "SwiftUI", content: "2.0")
+                    SettingsRowView(name: "Version", content: "1.0")
+                } label: {
+                    SettingsLabelView(labelText: "Application", labelImage: "apps.iphone")
+                }
+
                     
                 } //: VStack
                 .navigationBarTitleDisplayMode(.large)

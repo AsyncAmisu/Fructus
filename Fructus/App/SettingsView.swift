@@ -11,6 +11,7 @@ struct SettingsView: View {
     // MARK: - Properties
     
     @Environment(\.presentationMode) var presentationMode
+    @AppStorage("isOnboarding") var isOnboarding: Bool = false
     
     // MARK: - Body
     var body: some View {
@@ -34,9 +35,30 @@ struct SettingsView: View {
                         }
                     }
                     // MARK: - Section 2
-                    
+                GroupBox {
+                    Divider().padding(.vertical, 4)
+                    Text("If you wish, you can restart the application by toggle the switch in this box. That way it starts the onboarding process and you will see the welcome dcreen again.")
+                        .padding(.vertical, 8)
+                        .frame(minWidth: nil, idealWidth: nil, maxWidth: nil, minHeight: 60, idealHeight: nil, maxHeight: nil, alignment: .leading)
+                        .layoutPriority(1)
+                        .font(.footnote)
+                        .multilineTextAlignment(.leading)
+                    Toggle(isOn: $isOnboarding) {
+                        if isOnboarding {
+                            Text("Restarted".uppercased())
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.green)
+                        } else {
+                            Text("Restart".uppercased())
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.secondary)
+                        }
+                    }
+                    .padding()
+                } label: {
+                    SettingsLabelView(labelText: "Customization", labelImage: "paintbrush")
+                }
                     // MARK: - Section 3
-                
                 GroupBox {
                     SettingsRowView(name: "Developer", content: "Alexander Snitko")
                     SettingsRowView(name: "Designer", content: "Alexander Snitko")
@@ -70,7 +92,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
             .previewDevice("iPhone 11")
     }
 }
